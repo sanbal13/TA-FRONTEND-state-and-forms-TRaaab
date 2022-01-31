@@ -123,5 +123,10 @@ img {
     margin: 2rem;
     height: 300px;
 }
+.active {
+    background-color: brown;
+    color: #fff;
+    font-weight: 700;
+}
 
 /************** Footer **************/

@@ -27,36 +27,38 @@
         constructor(props) {
           super(props);
           this.state = {
-            img_src: '../assets/show-image.png',
+            img: 'show-image',
           };
         }
         handleImg = (img) => {
           this.setState({ img_src: img });
         };
         render() {
+          let labels = [
+            'basketball',
+            'cricket',
+            'laptop',
+            'phone',
+            'pubg',
+            'tiger',
+          ];
           return (
             <center>
-              <button
-                onClick={() => this.handleImg('../assets/basketball.jpg')}
-              >
-                Basketball
-              </button>
-              <button onClick={() => this.handleImg('../assets/cricket.jpg')}>
-                Cricket
-              </button>
-              <button onClick={() => this.handleImg('../assets/laptop.jpg')}>
-                Laptop
-              </button>
-              <button onClick={() => this.handleImg('../assets/phone.jpg')}>
-                Phone
-              </button>
-              <button onClick={() => this.handleImg('../assets/pubg.jpg')}>
-                Pubg
-              </button>
-              <button onClick={() => this.handleImg('../assets/tiger.jpg')}>
-                Tiger
-              </button>
-              <img src={this.state.img_src} alt="Phone" />
+              {labels.map((label) => (
+                <button
+                  key={label}
+                  className={this.state.img === label ? 'active' : ''}
+                  onClick={() => {
+                    this.setState({ img: label });
+                  }}
+                >
+                  {label.toUpperCase()}
+                </button>
+              ))}
+              <img
+                src={`../assets/${this.state.img}.jpg`}
+                alt={this.state.img}
+              />
             </center>
           );
         }
