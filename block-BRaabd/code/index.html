@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Image App</title>
+    <!-- React -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <!-- ReactDOM -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- CSS File -->
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            img: 'show-image',
+          };
+        }
+        handleImg = (img) => {
+          this.setState({ img_src: img });
+        };
+        render() {
+          let labels = [
+            'basketball',
+            'cricket',
+            'laptop',
+            'phone',
+            'pubg',
+            'tiger',
+          ];
+          return (
+            <center>
+              {labels.map((label) => (
+                <button
+                  key={label}
+                  className={this.state.img === label ? 'active' : ''}
+                  onClick={() => {
+                    this.setState({ img: label });
+                  }}
+                >
+                  {label.toUpperCase()}
+                </button>
+              ))}
+              <img
+                src={`../assets/${this.state.img}.jpg`}
+                alt={this.state.img}
+              />
+            </center>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
