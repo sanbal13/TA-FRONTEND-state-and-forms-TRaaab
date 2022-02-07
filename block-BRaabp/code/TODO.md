@@ -8,4 +8,4 @@
 
 ## Demo
 
-![Font Tester](./assets/choose-font.gif)
+![Font Tester](../assets/choose-font.gif)
