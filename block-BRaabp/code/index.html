@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- React -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <!-- ReactDOM -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./index.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Festive&family=IBM+Plex+Sans+Thai+Looped&family=Lato&family=Montserrat&family=Noto+Sans&family=Noto+Sans+JP&family=Open+Sans&family=Poppins&family=Roboto&family=Roboto+Condensed&family=Supermercado+One&family=Syne+Tactile&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./data.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            message: '',
+            fontSize: 24
+          };
+        }
+        handleText = (event) => {            
+            this.setState({
+              message: event.target.value,
+            });
+        };
+        handleSlider = (event) => {
+          console.log(event.target.value);
+          this.setState({
+              fontSize: event.target.value,
+            });
+        };
+        handleSelect = (event) => {
+          this.setState({
+              fontSize: event.target.value,
+            });
+        }
+
+        render() {
+          return (
+            <div className="container">
+              <div className="header flex flex-start">
+                <input className="flex-65 text-box" type="text" name="" id="" onChange={this.handleText} placeholder="Enter text"/>
+                <div className="flex-30 flex">
+                  <select className="flex-20" onChange={this.handleSelect} value={this.state.fontSize}>
+                    <option value={this.state.fontSize} />
+                    {[8, 12, 14, 20, 24, 32, 40, 64, 96, 120, 184, 280].map(
+                      (val) => (
+                        <option key={val} value={val}>
+                          {val}
+                        </option>
+                      )
+                    )}                    
+                  </select>
+                  <input type="text" className="input-size" id="size" disabled onChange={this.handleSelect} value={this.state.fontSize + "px"} />
+                  <input
+                    className="flex-80 slider"
+                    type="range"
+                    min="8"
+                    max="300"
+                    name=""
+                    id=""
+                    list="tickmarks"
+                    onChange={this.handleSelect}
+                    value={this.state.fontSize}
+                  />           
+                  
+                </div>
+              </div>
+              
+              <Cards message={this.state.message} fontSize={this.state.fontSize}/>
+            </div>
+          );
+        }
+      }
+      function Cards(props) {
+        return (
+          <div className="card-container flex flex-wrap flex-start align-stretch">
+            {fonts.map((font) => (
+              <Card key={font.display_name} font={font} message={props.message} fontSize={props.fontSize}/>
+            ))}
+          </div>
+        );
+      }
+      function Card(props) {
+        return (
+          <div className="card">
+            <div className="card-header flex">
+              <div className="fontName">{props.font.display_name}</div>
+              <div className="styles">{props.font.styles}</div>
+            </div>
+            <div className="createdBy">{props.font.designed_by}</div>
+            <div className={props.font.display_name.replaceAll(' ', '-').toLowerCase() + " content"} style={{fontSize: `${props.fontSize}px`}}>{props.message ? props.message : "Almost before we knew it, we had left the ground."}</div>
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

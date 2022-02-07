@@ -1,0 +1,253 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*************************** Custom Styles begins here ********************/
+html {
+    font-size: 16px;
+}
+body {
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    outline: none;
+}
+.container {
+    max-width: 1600px;
+    width: 100%;
+    margin: 1rem auto;
+    padding: 1rem;
+}
+a {
+    text-decoration: none;
+}
+
+/**************** Flex ****************/
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-10 {
+    flex: 0 1 10%;
+}
+.flex-20 {
+    flex: 0 1 20%;
+}
+.flex-30 {
+    flex: 0 1 30%;
+}
+.flex-45 {
+    flex: 0 1 45%;
+}
+.flex-65 {
+    flex: 0 1 65%;
+}
+.flex-80 {
+    flex: 0 1 80%;
+}
+.flex-start {
+    justify-content: flex-start;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.align-stretch {
+    align-items: stretch;
+}
+
+/************** Headings **************/
+h1, h2, h3, h4 {
+    font-weight: 700;
+}
+h1 {
+    font-size: 2.5rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.8rem;
+}
+h4 {
+    font-size: 1.4rem;
+}
+
+/************** Header **************/
+.header {
+    border-radius: 50rem;    
+    border: 1px solid #000;
+    position: relative;
+    z-index: 20;
+}
+
+.text-box {
+    padding: 1rem;
+    padding-left: 2.5rem;
+   border: transparent;
+   font-size: 1.5rem;
+   border-top-left-radius: 50rem; 
+   border-bottom-left-radius: 50rem; 
+   border-right: 1px solid #000;
+}
+select {
+    height: 3.8rem;    
+    font-size: 1.5rem;
+    background-color: transparent;  
+    border: none;
+    width: 7rem;    
+}
+
+.input-size {
+    height: 3rem;  
+    position: absolute;
+    width: 4rem;
+    font-size: 1.2rem;
+    border: transparent;   
+    text-align: center;
+    outline: none;
+    margin: .3rem;
+    border-radius: .5rem;
+}
+
+.input-size:hover {
+    background-color: rgb(238, 247, 252);
+}
+.input-size:focus {
+    background-color: rgb(219, 240, 252);
+}
+
+
+.slider {
+    margin-left: 1.5rem;
+    height: 3px;    
+}
+
+/************** Main **************/
+.card-container {    
+    margin: 1rem 0;
+    padding: 1rem;
+}
+.card {
+    width: 350px;
+    border: 1px solid grey;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    min-height: 20rem;
+    overflow: hidden;
+}
+.card:hover {
+    box-shadow: 1px 1px 10px rgb(187, 186, 186);
+}
+.fontName {
+    color: #202124;
+    font-size: 1.1rem;
+}
+.styles {
+    color: #5F6368;
+    font-size: .9rem;
+}
+.createdBy {
+    color: #5F6368;
+    margin: .2rem 0;
+    font-size: .9rem;
+}
+.content {
+    color: #202124;
+    margin-top: 1rem;  
+}
+
+/************** Font Family **************/
+.festive {
+    font-family: 'Festive', cursive;
+}
+.ibm-plex-sans-thai-looped {
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+}
+.lato {
+    font-family: 'Lato', sans-serif;
+}
+.montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+.noto-sans {
+    font-family: 'Noto Sans', sans-serif;
+}
+.noto-sans-japanese {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.open-sans {
+    font-family: 'Open Sans', sans-serif;
+}
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+.roboto {
+    font-family: 'Roboto', sans-serif;
+}
+.roboto-condensed {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.supermercado-one {
+    font-family: 'Supermercado One', cursive;
+}
+.syne-tactile {
+    font-family: 'Syne Tactile', cursive;
+}
+
+/************** Footer **************/
