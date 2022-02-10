@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- React -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <!-- ReactDOM -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./index.css" />
+    <title>Controlled and uncontrolled Components</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      let root = document.getElementById('root');
+      function Form() {
+        return (
+          <form>
+            <label htmlFor="email">Email: </label>
+            <input type="text" name="" id="email" />
+            <label htmlFor="date">Date: </label>
+            <input type="date" name="" id="date" />
+            <label htmlFor="file">File: </label>
+            <input type="file" name="" id="file" />
+            <label htmlFor="course">Course: </label>
+            <input
+              type="text"
+              name=""
+              id="course"
+              value="React [This cannot be changed]"
+              readOnly
+            />
+            <label htmlFor="price">Price: </label>
+            <input type="text" name="" id="price" disabled />
+            <label htmlFor="desc">Desc: </label>
+            <textarea name="" id="desc" cols="30" rows="10"></textarea>
+            <label htmlFor="bio">Bio: </label>
+            <textarea name="" id="bio" cols="30" rows="10" disabled></textarea>
+          </form>
+        );
+      }
+
+      class FormValidation extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            username: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            errors: {
+              username: '',
+              email: '',
+              password: '',
+              confirmPassword: '',
+            },
+          };
+        }
+
+        validateEmail = (email) => {
+            return email.match(
+              /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+          };
+
+        handleChange = (event) => {
+          const { name, value } = event.target;
+          let errors = this.state.errors;
+
+          switch (name) {
+            case 'username':
+                errors.username = value.match(/^[a-zA-Z\-]+$/) ? '' : "Invalid Username!";
+              break;
+            case 'email':
+                errors.email = this.validateEmail(value) ? '' : "Invalid Email!";
+              break;
+            case 'password':
+              errors.password =
+                value.length < 6
+                  ? 'Password length must be greater than 5.'
+                  : '';
+              break;
+            case 'confirmPassword':
+              errors.confirmPassword =
+                value === this.state.password
+                  ? ''
+                  : 'Confirm password must be same as Password';
+              break;
+            default:
+              break;
+          }
+
+          this.setState({
+            [name]: value,
+            errors,
+          });
+        };
+
+        handleSubmit = (event) => {
+            event.preventDefault();
+            alert("Registration Complete!");
+        }
+
+        render() {
+            const {username, email, password, confirmPassword} = this.state.errors;
+          return (
+            <form>
+              <h1>Register With Us</h1>
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                onChange={this.handleChange}
+                value={this.state.username}
+                autoComplete="off"
+                
+              />
+              <span>{username}</span>
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                name="email"
+                id="emailId"
+                onChange={this.handleChange}
+                value={this.state.email}
+                autoComplete="off"
+              />
+              <span>{email}</span>
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                onChange={this.handleChange}
+                value={this.state.password}
+                autoComplete="off"
+              />
+              <span>{password}</span>
+              <label htmlFor="confirm-password">Confirm Password:</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirm-password"
+                onChange={this.handleChange}
+                value={this.state.confirmPassword}
+                autoComplete="off"
+              />
+              <span>{confirmPassword}</span>
+              <input
+                type="submit"
+                value="Submit"
+                onClick={this.handleSubmit}
+                disabled = {username || email || password || confirmPassword || 
+                            !this.state.username || !this.state.email 
+                            || !this.state.password || !this.state.confirmPassword}
+              />
+            </form>
+          );
+        }
+      }
+
+      function Code() {
+        return (
+          <div className="flex wrap">
+            <Form />
+            <FormValidation />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<Code />, root);
+    </script>
+  </body>
+</html>
