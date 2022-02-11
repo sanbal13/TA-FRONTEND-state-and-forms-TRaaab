@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- React -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <!-- ReactDOM -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Learning About Forms</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <h1>📑 Learning About Forms</h1>
+    <h2>Controlled Component</h2>
+    <div id="root" class="container"></div>
+    <script type="text/babel">
+      let root = document.getElementById('root');
+      class Shipping extends React.Component {
+        constructor(props) {
+          super(props);          
+          this.state = {
+            addressShipping: '',
+            zipCodeShipping: '',
+            cityShipping: '',
+            countryShipping: '',
+            errors: {
+              addressShipping: '',
+              zipCodeShipping: '',
+              cityShipping: '',
+              countryShipping: '',
+            },
+          };
+        }
+        handleChange = (event) => {
+          const { name, value } = event.target;
+          let errors = this.state.errors;
+          switch (name) {
+            case 'addressShipping':
+              errors.addressShipping =
+                value.length < 8
+                  ? 'Address must contain atleast 8 characters'
+                  : '';
+              break;
+            case 'zipCodeShipping':
+              errors.zipCodeShipping =
+                value.length !== 6 ? 'Zip code should be of 6 digits' : '';
+              break;
+            case 'cityShipping':
+              errors.cityShipping =
+                value.length < 3
+                  ? 'City must contain atleast 3 characters'
+                  : '';
+              break;
+            case 'countryShipping':
+              errors.countryShipping =
+                value.length < 3
+                  ? 'Country must contain atleast 3 characters'
+                  : '';
+              break;
+            default:
+              break;
+          }
+          this.setState({
+            [name]: value,
+            errors,
+          });
+        };
+        render() {
+          const {
+            addressShipping,
+            zipCodeShipping,
+            cityShipping,
+            countryShipping,
+          } = this.state.errors;
+          return (
+            <div className="flex wrap">
+              <form>
+                <h3>Shipping Address</h3>
+                <label htmlFor="addressShipping">Address</label>
+                <input
+                  type="text"
+                  name="addressShipping"
+                  id="addressShipping"
+                  onChange={this.handleChange}
+                  className={addressShipping && 'error'}
+                  autoComplete="off"
+                />
+                <span>{addressShipping}</span>
+                <label htmlFor="zipCodeShipping">ZIP/Postal Code</label>
+                <input
+                  type="number"
+                  name="zipCodeShipping"
+                  id="zipCodeShipping"
+                  onChange={this.handleChange}
+                  className={zipCodeShipping && 'error'}
+                  autoComplete="off"
+                />
+                <span>{zipCodeShipping}</span>
+                <label htmlFor="cityShipping">City</label>
+                <input
+                  type="text"
+                  name="cityShipping"
+                  id="cityShipping"
+                  onChange={this.handleChange}
+                  className={cityShipping && 'error'}
+                  autoComplete="off"
+                />
+                <span>{cityShipping}</span>
+                <label htmlFor="countryShipping">Country</label>
+                <input
+                  type="text"
+                  name="countryShipping"
+                  id="countryShipping"
+                  onChange={this.handleChange}
+                  className={countryShipping && 'error'}
+                  autoComplete="off"
+                />
+                <span>{countryShipping}</span>
+              </form>
+              <Billing data={this.state} />
+            </div>
+          );
+        }
+      }
+      class Billing extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            checkbox: false,
+            addressBilling: '',
+            zipCodeBilling: '',
+            cityBilling: '',
+            countryBilling: '',
+            errors: {
+              addressBilling: '',
+              zipCodeBilling: '',
+              cityBilling: '',
+              countryBilling: '',
+            },
+          };
+        }
+        handleChange = (event) => {
+          const { name, value } = event.target;
+          let errors = this.state.errors;
+          switch (name) {
+            case 'addressBilling':
+              errors.addressBilling =
+                value.length < 8
+                  ? 'Address must contain atleast 8 characters'
+                  : '';
+              break;
+
+            case 'zipCodeBilling':
+              errors.zipCodeBilling =
+                value.length !== 6 ? 'Zip code should be of 6 digits' : '';
+              break;
+            case 'cityBilling':
+              errors.cityBilling =
+                value.length < 3
+                  ? 'City must contain atleast 3 characters'
+                  : '';
+              break;
+            case 'countryBilling':
+              errors.countryBilling =
+                value.length < 3
+                  ? 'Country must contain atleast 3 characters'
+                  : '';
+              break;
+            default:
+              break;
+          }
+          this.setState({
+            [name]: value,
+            errors,
+          });
+        };
+        handleCheckbox = (event) => {
+          const {
+            addressShipping,
+            zipCodeShipping,
+            cityShipping,
+            countryShipping,
+          } = this.props.data;
+          !this.state.checkbox
+            ? this.setState({
+                checkbox: true,
+                addressBilling: addressShipping,
+                zipCodeBilling: zipCodeShipping,
+                cityBilling: cityShipping,
+                countryBilling: countryShipping,
+                errors: {
+                  addressBilling: '',
+                  zipCodeBilling: '',
+                  cityBilling: '',
+                  countryBilling: '',
+                },
+              })
+            : this.setState({
+                checkbox: false,
+                addressBilling: '',
+                zipCodeBilling: '',
+                cityBilling: '',
+                countryBilling: '',
+                errors: {
+                  addressBilling: '',
+                  zipCodeBilling: '',
+                  cityBilling: '',
+                  countryBilling: '',
+                },
+              });
+        };
+        render() {
+          const {
+            addressBilling,
+            zipCodeBilling,
+            cityBilling,
+            countryBilling,
+          } = this.state.errors;
+
+          return (
+            <form>
+              <h3>Billing Address</h3>
+              <label htmlFor="sameAsBilling">
+                <input
+                  type="checkbox"
+                  name=""
+                  id="sameAsBilling"
+                  onChange={this.handleCheckbox}
+                />
+                Same as the Billing Address?{' '}
+              </label>
+              <label htmlFor="addressBilling">Address</label>
+              <input
+                type="text"
+                name="addressBilling"
+                id="addressBilling"
+                onChange={this.handleChange}
+                className={addressBilling && 'error'}
+                autoComplete="off"
+                value={this.state.addressBilling}
+                disabled={this.state.checkbox}
+              />
+              <span>{addressBilling}</span>
+              <label htmlFor="zipCodeBilling">ZIP/Postal Code</label>
+              <input
+                type="number"
+                name="zipCodeBilling"
+                id="zipCodeBilling"
+                onChange={this.handleChange}
+                className={zipCodeBilling && 'error'}
+                autoComplete="off"
+                value={this.state.zipCodeBilling}
+                disabled={this.state.checkbox}
+              />
+              <span>{zipCodeBilling}</span>
+              <label htmlFor="cityBilling">City</label>
+              <input
+                type="text"
+                name="cityBilling"
+                id="cityBilling"
+                onChange={this.handleChange}
+                className={cityBilling && 'error'}
+                autoComplete="off"
+                value={this.state.cityBilling}
+                disabled={this.state.checkbox}
+              />
+              <span>{cityBilling}</span>
+              <label htmlFor="countryBilling">Country</label>
+              <input
+                type="text"
+                name="countryBilling"
+                id="countryBilling"
+                onChange={this.handleChange}
+                className={countryBilling && 'error'}
+                autoComplete="off"
+                value={this.state.countryBilling}
+                disabled={this.state.checkbox}
+              />
+              <span>{countryBilling}</span>
+            </form>
+          );
+        }
+      }
+      function App() {
+        return <Shipping />;
+      }
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
