@@ -1,0 +1,252 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*************************** Custom Styles begins here ********************/
+html {
+    font-size: 16px;
+}
+body {
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    height: 100vh;
+    background-color: rgb(226, 245, 248);
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+.container {
+    max-width: 1000px;
+    width: 100%;   
+    display: flex;
+    justify-content: flex-start;     
+    border-radius: 1rem;
+    box-shadow: 0px 0px 20px rgb(250, 231, 234);
+    background-color: #fff;
+}
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 150%;   
+}
+
+/**************** Flex ****************/
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.flex-20 {
+    flex: 0 1 20%;
+}
+.flex-30 {
+    flex: 0 1 30%;
+}
+.flex-48 {
+    flex: 0 1 48%;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/************** Headings **************/
+h1, h2, h3, h4 {
+    font-weight: 700;
+}
+h1 {
+    font-size: 2.5rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.8rem;
+}
+h4 {
+    font-size: 1.4rem;
+}
+
+/************** Header **************/
+.header {
+    border-bottom: 1px solid rgb(194, 192, 192);
+    width: 100%;
+    padding-bottom: 1.5rem;
+}
+
+/************** Main **************/
+.image {
+    flex: 0 0 30%;   
+    background-color: rgb(3, 58, 90);
+    color: #fff;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;  
+    overflow: hidden;  
+}
+
+li {
+    margin-right: 3rem;
+}
+.form {
+    padding: 5rem;
+}
+.number {
+    background-color: aquamarine;
+    padding:.5rem .8rem;
+    border-radius: .5rem;
+    margin-right: .5rem;
+}
+.active {
+    background-color: blue;
+    color: #fff;
+    padding:.5rem .8rem;
+    border-radius: .5rem;
+    margin-right: .5rem;
+}
+input[type="checkbox"] {
+    display: none;
+}
+
+#cb1+label::before, #cb2+label::before  {    
+    background: url('./images/chess1.svg');
+    background-size: cover;  
+    width: 10rem;     
+    content:""; 
+    color: transparent;
+    border: 1px solid grey;
+    padding: 4rem;
+    border-radius: 1rem;
+    margin: 1rem;   
+    box-shadow: 1px 1px 3px #000; 
+    display: inline-block;
+}
+#cb2+label::before {
+    background: url('./images/chess2.svg');
+    background-size: cover; 
+}
+#cb1:checked+label::before {
+    background: url('./images/chess1-green.svg');
+    background-size: cover; 
+}
+#cb2:checked+label::before {
+    background: url('./images/chess2-green.svg');
+    background-size: cover; 
+} 
+.radioButton {
+    margin: 1rem 0;
+}
+.buttons {
+    text-align: right;
+}
+input[type="button"] {
+    margin-right: 1rem;
+}
+
+input[type=button], input[type=submit] {
+    background-color: #fff;
+    border: 1px solid grey;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    font-size: 1.1rem;
+}
+input[type=button]:hover, input[type=submit]:hover {
+    background-color: blue;
+    color: #fff;
+}
+
+.buttons {
+    border-top: 1px solid rgb(187, 186, 186);
+    padding-top: 1.5rem;
+}
+.form-section {
+    padding-bottom: 1rem;
+}
+
+.no-display {
+    display: none;
+}
+.icon {
+    background-color: red;
+    height: 10rem;
+    width: 10rem;
+    color: #fff;
+}
+.heading {
+    margin-top: 2rem;
+}
+
+/* Form */
+.form1 label, .form1 input {
+    width: 100%;
+}
+.form1 label {
+    margin-top: .5rem;
+    margin-bottom: .2rem;
+    display: inline-block;
+}
+.form1 input {
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+}
+form {
+    margin: 1rem 0;
+}
+textarea {
+    width: 100%;
+    height: 10rem;
+}
+/************** Footer **************/
